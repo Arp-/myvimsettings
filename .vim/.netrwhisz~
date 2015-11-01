@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/arp/optin/git/apps/ontrack/backend/log'
+let g:netrw_dirhist_2='/home/arp/optin/git/apps/ontrack/backend/geocoder-library'
+let g:netrw_dirhist_3='/home/arp/optin/git@/services/eventio'
+let g:netrw_dirhist_4='/home/arp/optin/git@/services/eventio/client'
+let g:netrw_dirhist_5='/home/arp/optin/git@/services/eventio/data'
+let g:netrw_dirhist_6='/home/arp/optin/git@/services/eventio/data/processor'
+let g:netrw_dirhist_7='/home/arp/optin/git@/services/eventio/data/processor/osp'

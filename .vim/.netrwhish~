@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/arp/optin/eventio/services/eventio/data'
+let g:netrw_dirhist_2='/home/arp/optin/eventio/services/eventio/client'
+let g:netrw_dirhist_3='/home/arp/optin/eventio/services/eventio/data/processor'
+let g:netrw_dirhist_4='/home/arp/optin/eventio/services/eventio/data/processor/osp'
+let g:netrw_dirhist_5='/home/arp/optin/eventio/services/eventio'
+let g:netrw_dirhist_6='/home/arp/git/src'

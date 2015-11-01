@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/arp/optin_cuccok/svn2/Optin_Sensor_Protocol/Utils/phantom/inc'
+let g:netrw_dirhist_2='/home/arp/optin_cuccok/svn2/Optin_Sensor_Protocol/Utils/libosp-parser-cpp'
+let g:netrw_dirhist_3='/home/arp/optin_cuccok/svn2/Optin_Sensor_Protocol/Utils/libosp-parser-cpp/src'
+let g:netrw_dirhist_4='/home/arp/optin_cuccok/svn2/Optin_Sensor_Protocol/Utils/phantom_sender/inc/phantom_sender'
+let g:netrw_dirhist_5='/home/arp/optin_cuccok/svn2/Optin_Sensor_Protocol/Utils/phantom_sender'
+let g:netrw_dirhist_6='/home/arp/optin_cuccok/svn2/.svn'
+let g:netrw_dirhist_7='/home/arp/.subversion/auth'
+let g:netrw_dirhist_8='/home/arp/homokozo'
+let g:netrw_dirhist_9='/home/arp/.gconf'

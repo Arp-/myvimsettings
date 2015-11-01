@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/arp/optin/git@/services/eventio/data/processor'
+let g:netrw_dirhist_2='/home/arp/optin/git@/services/eventio/data/processor/osp'
+let g:netrw_dirhist_3='/home/arp/optin/git@/services/eventio'
+let g:netrw_dirhist_4='/home/arp/optin/git/api/estreamer/js'

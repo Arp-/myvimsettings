@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/arp/optin/osp-server/src/osp_server'
+let g:netrw_dirhist_2='/home/arp/optin/osp-server/src/osp_server/session_state_machine'
+let g:netrw_dirhist_3='/home/arp/optin/osp-server/src/osp_server'
+let g:netrw_dirhist_4='/home/arp/optin/osp-server/src/osp_server/session_state_machine'
+let g:netrw_dirhist_5='/home/arp/optin/osp-server/src/osp_server'
+let g:netrw_dirhist_6='/home/arp/optin/osp-server/src/osp_server/amqp'

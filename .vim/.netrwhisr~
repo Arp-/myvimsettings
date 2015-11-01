@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/arp/optin/eventio/services/eventio/system'
+let g:netrw_dirhist_2='/home/arp/optin/eventio/services/eventio/data'
+let g:netrw_dirhist_3='/home/arp/optin/eventio/services/eventio/data/processor'
+let g:netrw_dirhist_4='/home/arp/optin/eventio/services/eventio/data/processor/osp'
+let g:netrw_dirhist_5='/home/arp/optin/svn/hardware/Optin_Sensor_Protocol/Utils/phantom_modify'
+let g:netrw_dirhist_6='/home/arp/optin/svn/hardware/Optin_Sensor_Protocol/Utils/phantom_modify/inc'
+let g:netrw_dirhist_7='/home/arp/optin/svn/hardware/Optin_Sensor_Protocol/Utils/phantom_modify/inc/phantom_modify'
+let g:netrw_dirhist_8='/home/arp/optin/svn/hardware/Optin_Sensor_Protocol/Utils/phantom_modify/src'
+let g:netrw_dirhist_9='/home/arp/optin/svn/hardware/Optin_Sensor_Protocol/Utils/phantom_modify/src/phantom_modify'
