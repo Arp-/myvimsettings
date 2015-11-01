@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/arp/optin/git@/services/eventio/system'
-let g:netrw_dirhist_2='/home/arp/git/inc/view/tree_view'
-let g:netrw_dirhist_3='/home/arp/git/inc/view'

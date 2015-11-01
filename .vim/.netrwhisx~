@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/arp/optin/svn/hardware/Optin_Sensor_Protocol/Utils/phantom_sender'
-let g:netrw_dirhist_2='/home/arp/optin/svn/hardware/Optin_Sensor_Protocol/Utils/phantom_sender/src'
-let g:netrw_dirhist_3='/home/arp/optin/svn/hardware/Optin_Sensor_Protocol/Utils/phantom_sender/src/phantom_sender'
-let g:netrw_dirhist_4='/home/arp/optin/svn/hardware/Optin_Sensor_Protocol/Utils/prettyosp'
-let g:netrw_dirhist_5='/home/arp/optin/svn/hardware/Optin_Sensor_Protocol/Utils/prettyosp/src'
-let g:netrw_dirhist_6='/home/arp/optin/svn/hardware/Optin_Sensor_Protocol/Utils/prettyosp/src/prettyosp'
