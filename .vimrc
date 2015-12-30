@@ -31,7 +31,10 @@ Plugin 'gmarik/Vundle.vim'
 "" My node plugins
 Plugin 'Shutnik/jshint2.vim'
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'terryma/vim-multiple-cursors'
+Plugin 'timcharper/textile.vim'
+Plugin 'dag/vim2hs'
+"Plugin 'neovimhaskell/haskell-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -53,9 +56,16 @@ filetype plugin indent on    " required
 ""----------------------------------------------------------------------------""
 ""                       END OF VUNDLE SETTINGS                               ""
 ""----------------------------------------------------------------------------""
-"----------------------------------------------------------------------------""
-"                       VIM GLOBAL SETTINGS                                  ""
-"----------------------------------------------------------------------------""
+""----------------------------------------------------------------------------""
+""                          VIM2HS SETTINGS                                   ""
+""----------------------------------------------------------------------------""
+let g:haskell_conceal = 0
+""----------------------------------------------------------------------------""
+""                      END OF VIM2HS SETTINGS                                ""
+""----------------------------------------------------------------------------""
+"-----------------------------------------------------------------------------""
+"                       VIM GLOBAL SETTINGS                                   ""
+"-----------------------------------------------------------------------------""
 syntax on
 set number
 
@@ -93,7 +103,7 @@ let mapleader = '-'
 
 
 "" let netrw tree style
-let g:netrw_liststyle=1
+let g:netrw_liststyle=3
 
 
 "C++ completion settings"
@@ -180,6 +190,11 @@ function! SuperCleverTab()
 			return "\<C-N>"
 		endif
 	endif
+endfunction
+
+function! EchoPath()
+	let a:path = expand('<sfile>:p')
+	echo a:path
 endfunction
 
 
@@ -314,7 +329,10 @@ inoremap qq <c-c>
 
 "" automaticly 4 space expandtab
 
-autocmd FileType text :set nowrap!
+autocmd FileType text :set wrap tw=0
+autocmd FileType textile :set wrap tw=0
+autocmd FileType htmldjango :set et tw=0
+autocmd FileType haskell :set et sw=4 ts=4
 
 "" TODO remove nowrap is filetype is not a text
 ""autocmd FileType text :set nowrap
