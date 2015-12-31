@@ -1,6 +1,6 @@
-""----------------------------------------------------------------------------""
-""                         VUNDLE SETTINGS                                    ""
-""----------------------------------------------------------------------------""
+
+"" VUNDLE SETTINGS --------------------------------------------------------- {{{
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -51,26 +51,23 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+" }}} ---------------------------------------------------------- VUNDLE SETTINGS
 
+"" VIM2HS SETTINGS --------------------------------------------------------- {{{
 
-""----------------------------------------------------------------------------""
-""                       END OF VUNDLE SETTINGS                               ""
-""----------------------------------------------------------------------------""
-""----------------------------------------------------------------------------""
-""                          VIM2HS SETTINGS                                   ""
-""----------------------------------------------------------------------------""
-let g:haskell_conceal = 0
-""----------------------------------------------------------------------------""
-""                      END OF VIM2HS SETTINGS                                ""
-""----------------------------------------------------------------------------""
-"-----------------------------------------------------------------------------""
-"                       VIM GLOBAL SETTINGS                                   ""
-"-----------------------------------------------------------------------------""
+"" Dunno do something here if i want
+
+" }}} ---------------------------------------------------------- VIM2HS SETTINGS
+
+"" VIM GLOBAL SETTINGS ----------------------------------------------------- {{{
+
 syntax on
 set number
+"set nofoldenable
 
 
-
+"" Display the statusline, or not to display the statusline ""
+set laststatus=0 
 set shiftwidth=2
 set tabstop=2
 set smartindent
@@ -118,12 +115,9 @@ let OmniCpp_LocalSearchDecl = 0
 
 filetype plugin indent on
 
-""----------------------------------------------------------------------------""
-""                       END OF VIM GLOBAL SETTING                            ""
-""----------------------------------------------------------------------------""
-""----------------------------------------------------------------------------""
-""                              VIM FUNCTIONS                                 ""
-""----------------------------------------------------------------------------""
+" }}} ------------------------------------------------------ VIM GLOBAL SETTINGS
+
+"" VIM FUNCTIONS ----------------------------------------------------------- {{{
 
 :function ScrollBindAll()
 :	windo set scrollbind
@@ -198,12 +192,9 @@ function! EchoPath()
 endfunction
 
 
-""----------------------------------------------------------------------------""
-""                         END OF VIM FUNCTIONS                               ""
-""----------------------------------------------------------------------------""
-""----------------------------------------------------------------------------""
-""                            VIM COMMANDS                                    ""
-""----------------------------------------------------------------------------""
+" }}} ------------------------------------------------------------ VIM FUNCTIONS
+
+"" VIM COMMANDS ------------------------------------------------------------ {{{
 
 "create Trim command:"
 :command Trim :%s/\s\+$//e
@@ -212,12 +203,9 @@ endfunction
 "Substitutes 3 or more empty lines after each other -to-> 2 empty lines
 :command RemoveBlankLines %s/\n\{3,\}/\r\r\r/ge
 
-""----------------------------------------------------------------------------""
-""                         END OF VIM COMMANDS                                ""
-""----------------------------------------------------------------------------""
-""----------------------------------------------------------------------------""
-""                            VIM MAPPINGS                                    ""
-""----------------------------------------------------------------------------""
+" }}} ------------------------------------------------------------- VIM COMMANDS
+
+"" VIM MAPPINGS ------------------------------------------------------------ {{{
 
 map <silent> <F9> :call ScrollBindAll()<CR>
 map <silent> <F10> :call ScrollBindNone()<CR>
@@ -313,41 +301,49 @@ nnoremap <S-Down> <esc>:cclose<cr>
 "" Make easyer excape to normal mode
 inoremap qq <c-c>
 
-""----------------------------------------------------------------------------""
-""                         END OF VIM MAPPINGS                                ""
-""----------------------------------------------------------------------------""
-""----------------------------------------------------------------------------""
-""                          VIM ABBREVIATIONS                                  ""
-""----------------------------------------------------------------------------""
-"" NOTE MAKE SOME USE OF THIS
-""----------------------------------------------------------------------------""
-""                      END OF VIM ABBREVIATIONS                              ""
-""----------------------------------------------------------------------------""
-""----------------------------------------------------------------------------""
-""                          VIM AUTOCOMMANDS                                  ""
-""----------------------------------------------------------------------------""
+" }}} ------------------------------------------------------------- VIM MAPPINGS
+"
+"" VIM ABBREVIATIONS ------------------------------------------------------- {{{
+
+" NOTE MAKE SOME USE OF THIS
+
+" }}} -------------------------------------------------------- VIM ABBREVIATIONS
+"
+"" VIM AUTOCOMMANDS -------------------------------------------------------- {{{
 
 "" automaticly 4 space expandtab
 
-autocmd FileType text :set wrap tw=0
-autocmd FileType textile :set wrap tw=0
-autocmd FileType htmldjango :set et tw=0
-autocmd FileType haskell :set et sw=4 ts=4
+augroup plain_textfile_settings
+	autocmd!
+	autocmd FileType text :set wrap tw=0
+augroup END
+
+augroup textile_settings
+	autocmd!
+	autocmd FileType textile :set wrap tw=0
+augroup END
+
+augroup htmldjango_settings
+	autocmd!
+	autocmd FileType htmldjango :set et tw=0
+augroup END
+
+augroup haskell_settings
+	autocmd!
+	autocmd FileType haskell :set et sw=4 ts=4
+augroup END
 
 "" TODO remove nowrap is filetype is not a text
 ""autocmd FileType text :set nowrap
 
-autocmd FileType javascript :call JavascriptSyntax() 
+augroup javascript_settings
+	autocmd!
+	autocmd FileType javascript :call JavascriptSyntax() 
+augroup END
 
-""autotrim ?
-""----------------------------------------------------------------------------""
-""                       END OF VIM AUTOCOMMANDS                              ""
-""----------------------------------------------------------------------------""
-""----------------------------------------------------------------------------""
-""                          VIM EXTRASYNTAX                                   ""
-""----------------------------------------------------------------------------""
+augroup vim_settings
+	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
+augroup END
 
-""----------------------------------------------------------------------------""
-""                       END OF VIM EXTRASYNTAX                               ""
-""----------------------------------------------------------------------------""
-
+" }}} --------------------------------------------------------- VIM AUTOCOMMANDS
