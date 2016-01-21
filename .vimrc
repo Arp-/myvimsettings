@@ -67,7 +67,7 @@ set number
 
 
 "" Display the statusline, or not to display the statusline ""
-set laststatus=0 
+set laststatus=1 
 set shiftwidth=2
 set tabstop=2
 set smartindent
@@ -152,7 +152,7 @@ endfunction
 function SWSpace()
 	let myspace = ""
 	let i = 0
-	while i <= &shiftwidth - 1
+	while i <=# &l:shiftwidth - 1
 		let myspace = myspace . " "
 		let i = i + 1
 	endwhile
@@ -163,9 +163,9 @@ endfunction
 "" Function that can soft or hard tab
 function Tab(tabType)
 	let myspace = SWSpace()
-	if a:tabType == "soft"
+	if a:tabType ==? "soft"
 		:%s/\t/\=myspace/ge
-	elseif a:tabType == "hard"
+	elseif a:tabType ==? "hard"
 		execute '%s/' . myspace . '/\t/g'
 	endif
 endfunction
@@ -176,7 +176,7 @@ function! SuperCleverTab()
 	if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
 		return "\<Tab>"
 	else
-		if &omnifunc != ''
+		if &omnifunc !=# ''
 			return "\<C-X>\<C-O>"
 		elseif &dictionary != ''
 			return "\<C-K>"
