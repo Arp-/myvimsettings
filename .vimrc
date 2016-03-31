@@ -34,6 +34,7 @@ Plugin 'jelera/vim-javascript-syntax'
 "Plugin 'terryma/vim-multiple-cursors'
 Plugin 'timcharper/textile.vim'
 Plugin 'dag/vim2hs'
+Plugin 'dcharbon/vim-flatbuffers'
 "Plugin 'neovimhaskell/haskell-vim'
 
 " All of your Plugins must be added before the following line
@@ -301,6 +302,9 @@ nnoremap <S-Down> <esc>:cclose<cr>
 "" Make easyer excape to normal mode
 inoremap qq <c-c>
 
+"" onoremap ius <esc>ma:.s/\\(_\\|^\\|$\\)/\\1<cr>`aNvnx
+
+
 " }}} ------------------------------------------------------------- VIM MAPPINGS
 "
 "" VIM ABBREVIATIONS ------------------------------------------------------- {{{
@@ -320,7 +324,7 @@ augroup END
 
 augroup textile_settings
 	autocmd!
-	autocmd FileType textile :set wrap tw=0
+	autocmd FileType textile :set wrap tw=0 et
 augroup END
 
 augroup htmldjango_settings
@@ -330,8 +334,13 @@ augroup END
 
 augroup haskell_settings
 	autocmd!
-	autocmd FileType haskell :set et sw=4 ts=4
+	autocmd FileType haskell :set nofen et sw=4 ts=4
 augroup END
+
+augroup python_settings
+	autocm!
+	autocmd FileType python :set et tw=0 sw=4 ts=4
+augroup end
 
 "" TODO remove nowrap is filetype is not a text
 ""autocmd FileType text :set nowrap
@@ -344,6 +353,16 @@ augroup END
 augroup vim_settings
 	autocmd!
 	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+augroup json_settings
+	autocmd!
+	autocmd FileType json :set et sw=4 ts=4
+augroup END
+
+augroup cmake_settings
+	autocmd!
+	autocmd FileType cmake :set et sw=2 ts=2
 augroup END
 
 " }}} --------------------------------------------------------- VIM AUTOCOMMANDS
