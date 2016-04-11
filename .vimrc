@@ -35,6 +35,7 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'timcharper/textile.vim'
 Plugin 'dag/vim2hs'
 Plugin 'dcharbon/vim-flatbuffers'
+Plugin 'elixir-lang/vim-elixir'
 "Plugin 'neovimhaskell/haskell-vim'
 
 " All of your Plugins must be added before the following line
