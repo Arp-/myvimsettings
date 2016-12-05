@@ -1,8 +1,8 @@
 
-"" VUNDLE SETTINGS --------------------------------------------------------- {{{
+"" VUNDLE SETTINGS --------------------------------------------------------- 
 
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype on                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -34,9 +34,13 @@ Plugin 'jelera/vim-javascript-syntax'
 "Plugin 'terryma/vim-multiple-cursors'
 Plugin 'timcharper/textile.vim'
 Plugin 'dag/vim2hs'
-Plugin 'dcharbon/vim-flatbuffers'
+"Plugin 'dcharbon/vim-flatbuffers'
 Plugin 'elixir-lang/vim-elixir'
-"Plugin 'neovimhaskell/haskell-vim'
+Plugin 'smerrill/vcl-vim-plugin'
+"Plugin 'kchmck/vim-coffee-script'
+Plugin 'elmcast/elm-vim'
+Plugin 'neovimhaskell/haskell-vim'
+Plugin 'shirk/vim-gas'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -53,31 +57,26 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-" }}} ---------------------------------------------------------- VUNDLE SETTINGS
+"  ---------------------------------------------------------- VUNDLE SETTINGS
 
-"" VIM2HS SETTINGS --------------------------------------------------------- {{{
+"" VIM2HS SETTINGS --------------------------------------------------------- 
 
 "" Dunno do something here if i want
 
-" }}} ---------------------------------------------------------- VIM2HS SETTINGS
+"  ---------------------------------------------------------- VIM2HS SETTINGS
 
-"" VIM GLOBAL SETTINGS ----------------------------------------------------- {{{
+"" VIM GLOBAL SETTINGS ----------------------------------------------------- 
 
 syntax on
 set number
 "set nofoldenable
 
-"" For windows cygwin set some characters? 
-let &t_ti.="\e[1 q"
-let &t_SI.="\e[5 q"
-let &t_EI.="\e[1 q"
-let &t_te.="\e[0 q"
 
 "" Display the statusline, or not to display the statusline ""
 set laststatus=1 
 set shiftwidth=2
 set tabstop=2
-set smartindent
+""set smartindent
 set list listchars=tab:»·,trail:·,extends:#,nbsp:·,eol:¢
 set mouse=a
 set scrolloff=10
@@ -120,11 +119,11 @@ let OmniCpp_LocalSearchDecl = 0
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 
 
-filetype plugin indent on
+""filetype plugin indent on "" it's already called
 
-" }}} ------------------------------------------------------ VIM GLOBAL SETTINGS
+"  ------------------------------------------------------ VIM GLOBAL SETTINGS
 
-"" VIM FUNCTIONS ----------------------------------------------------------- {{{
+"" VIM FUNCTIONS ----------------------------------------------------------- 
 
 :function ScrollBindAll()
 :	windo set scrollbind
@@ -199,9 +198,9 @@ function! EchoPath()
 endfunction
 
 
-" }}} ------------------------------------------------------------ VIM FUNCTIONS
+"  ------------------------------------------------------------ VIM FUNCTIONS
 
-"" VIM COMMANDS ------------------------------------------------------------ {{{
+"" VIM COMMANDS ------------------------------------------------------------ 
 
 "create Trim command:"
 :command Trim :%s/\s\+$//e
@@ -210,9 +209,9 @@ endfunction
 "Substitutes 3 or more empty lines after each other -to-> 2 empty lines
 :command RemoveBlankLines %s/\n\{3,\}/\r\r\r/ge
 
-" }}} ------------------------------------------------------------- VIM COMMANDS
+"  ------------------------------------------------------------- VIM COMMANDS
 
-"" VIM MAPPINGS ------------------------------------------------------------ {{{
+"" VIM MAPPINGS ------------------------------------------------------------ 
 
 map <silent> <F9> :call ScrollBindAll()<CR>
 map <silent> <F10> :call ScrollBindNone()<CR>
@@ -309,17 +308,29 @@ nnoremap <S-Down> <esc>:cclose<cr>
 inoremap qq <c-c>
 
 "" onoremap ius <esc>ma:.s/\\(_\\|^\\|$\\)/\\1<cr>`aNvnx
+"" Minimal inner underscore helper because yep
+onoremap i_ :<c-u>normal! T_vt_<cr>
+
+noremap <left> <esc>
+noremap <right> <esc>
+noremap <up> <esc>
+noremap <down> <esc>
+
+"" yank the whole file into + register
+""nnoremap ya ggVG"+y
+
+"" remap hjkl
 
 
-" }}} ------------------------------------------------------------- VIM MAPPINGS
+"  ------------------------------------------------------------- VIM MAPPINGS
 "
-"" VIM ABBREVIATIONS ------------------------------------------------------- {{{
+"" VIM ABBREVIATIONS ------------------------------------------------------- 
 
 " NOTE MAKE SOME USE OF THIS
 
-" }}} -------------------------------------------------------- VIM ABBREVIATIONS
+"  -------------------------------------------------------- VIM ABBREVIATIONS
 "
-"" VIM AUTOCOMMANDS -------------------------------------------------------- {{{
+"" VIM AUTOCOMMANDS -------------------------------------------------------- 
 
 "" automaticly 4 space expandtab
 
@@ -344,7 +355,7 @@ augroup haskell_settings
 augroup END
 
 augroup python_settings
-	autocm!
+	autocmd!
 	autocmd FileType python :set et tw=0 sw=4 ts=4
 augroup end
 
@@ -371,4 +382,13 @@ augroup cmake_settings
 	autocmd FileType cmake :set et sw=2 ts=2
 augroup END
 
-" }}} --------------------------------------------------------- VIM AUTOCOMMANDS
+""augroup netrw_settings
+""	autocmd!
+""	autocmd FileType netrw call OpenRemap()
+""augroup END
+
+
+
+
+
+"  --------------------------------------------------------- VIM AUTOCOMMANDS
