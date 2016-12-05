@@ -178,6 +178,7 @@ endfunction
 
 
 "" Probably a super clever tab
+"" Actually do i use this??
 function! SuperCleverTab()
 	if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
 		return "\<Tab>"
@@ -334,6 +335,11 @@ noremap <down> <esc>
 
 "" automaticly 4 space expandtab
 
+"" NOTE do something with the filetype plugins, because when i open
+"" from vim an other file the ftplugin does not run for that buffer
+"" so i should lookup some solution :'D
+
+
 augroup plain_textfile_settings
 	autocmd!
 	autocmd FileType text :set wrap tw=0
@@ -359,7 +365,7 @@ augroup python_settings
 	autocmd FileType python :set et tw=0 sw=4 ts=4
 augroup end
 
-"" TODO remove nowrap is filetype is not a text
+"" TODO remove nowrap if filetype is not a text
 ""autocmd FileType text :set nowrap
 
 augroup javascript_settings
@@ -380,6 +386,11 @@ augroup END
 augroup cmake_settings
 	autocmd!
 	autocmd FileType cmake :set et sw=2 ts=2
+augroup END
+
+augroup cpp_settings
+	autocmd!
+	autocmd FileType cpp :set noet sw=2 ts=2
 augroup END
 
 ""augroup netrw_settings
