@@ -200,6 +200,66 @@ function! EchoPath()
 	echo a:path
 endfunction
 
+function! IsUpper(char)
+	if a:char =~ '[A-Z]'
+		return 1
+	endif
+	return 0
+endfunction
+
+function! IsLower(char)
+	if a:char =~ '[a-z]'
+		return 1
+	endif
+	return 0
+endfunction
+
+function! StrInheritCase(one, two)
+	if strlen(a:one) != strlen(a:two) 
+		return -1
+	endif
+	let l:twolist = split(a:two, '\zs')
+	let l:onelist = split(a:one, '\zs')
+	let l:onelen = len(l:onelist)
+	let l:i = 0
+	while (l:i < l:onelen) 
+		if IsLower(l:onelist[l:i])
+			let l:twolist[l:i] = tolower(l:twolist[l:i])
+		elseif IsUpper(l:onelist[l:i])
+			let l:twolist[l:i] = toupper(l:twolist[l:i])
+		endif
+		let l:i = l:i + 1
+	endwhile
+	return join(l:twolist, '')
+endfunction
+
+function! OpenOther()
+	let l:path = @%
+	let l:pathtok = split(l:path, '/')
+	let l:i = 0
+	let l:tok_len = len(l:pathtok)
+	while l:i < l:tok_len
+		let l:e = l:pathtok[l:i]
+		if tolower(l:e) ==# 'inc'
+			let l:pathtok[l:i] = StrInheritCase(l:e, 'src')
+		elseif tolower(l:e) ==# 'src'
+			let l:pathtok[l:i] = StrInheritCase(l:e, 'inc')
+		elseif tolower(l:e) =~ '.*\.hpp'
+			let l:p = split(l:e, '\.')
+			let l:p[1] = StrInheritCase(l:p[1], 'cpp')
+			let l:pathtok[l:i] = join(l:p, '.')
+		elseif tolower(l:e) =~ '.*\.cpp'
+			let l:p = split(l:e, '\.')
+			let l:p[1] = StrInheritCase(l:p[1], 'hpp')
+			let l:pathtok[l:i] = join(l:p, '.')
+		endif
+		let l:i = l:i + 1
+	endwhile
+
+	return join(l:pathtok, "/")
+
+endfunction
+
 
 "  ------------------------------------------------------------ VIM FUNCTIONS
 
@@ -211,6 +271,8 @@ endfunction
 
 "Substitutes 3 or more empty lines after each other -to-> 2 empty lines
 :command RemoveBlankLines %s/\n\{3,\}/\r\r\r/ge
+
+:command Vo :execute 'vs ' . OpenOther()
 
 "  ------------------------------------------------------------- VIM COMMANDS
 
