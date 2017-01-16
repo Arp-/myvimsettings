@@ -2,7 +2,7 @@
 "" VUNDLE SETTINGS --------------------------------------------------------- 
 
 set nocompatible              " be iMproved, required
-filetype on                  " required
+filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -35,8 +35,9 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'timcharper/textile.vim'
 Plugin 'dag/vim2hs'
 "Plugin 'dcharbon/vim-flatbuffers'
-Plugin 'elixir-lang/vim-elixir'
+"Plugin 'slashmili/alchemist.vim'
 Plugin 'smerrill/vcl-vim-plugin'
+Plugin 'elixir-lang/vim-elixir'
 "Plugin 'kchmck/vim-coffee-script'
 Plugin 'elmcast/elm-vim'
 Plugin 'neovimhaskell/haskell-vim'
@@ -44,6 +45,7 @@ Plugin 'shirk/vim-gas'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+filetype on
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -373,6 +375,11 @@ augroup javascript_settings
 	autocmd FileType javascript :call JavascriptSyntax() 
 augroup END
 
+augroup json_settings
+	autocmd!
+	autocmd FileType json :set ts=2 sw=2
+augroup END
+
 augroup vim_settings
 	autocmd!
 	autocmd FileType vim setlocal foldmethod=marker
@@ -390,7 +397,13 @@ augroup END
 
 augroup cpp_settings
 	autocmd!
-	autocmd FileType cpp :set noet sw=2 ts=2
+	autocmd FileType cpp :set noet sw=2 ts=2 syn=cpp.doxygen
+augroup END
+
+augroup elixir_settings
+	autocmd!
+	autocmd FileType ex :set et sw=2 ts=2 syn=elixir
+	autocmd FileType exs :set et sw=2 ts=2 syn=elixir
 augroup END
 
 ""augroup netrw_settings
