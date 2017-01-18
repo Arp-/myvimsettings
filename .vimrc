@@ -319,17 +319,13 @@ imap <silent> <A-Right> <ESC> :wincmd l<CR>i
 
 
 "" Moving lines up and down"
-nmap <silent> <C-j> :m+<CR>==
-nmap <silent> <C-k> :m-2<CR>==
-imap <silent> <C-j> <Esc>:m+<CR>==gi
-imap <silent> <C-k> <Esc>:m-2<CR>==gi
-vmap <silent> <C-j> :m'>+<CR>gv=gv
-vmap <silent> <C-k> :m-2<CR>gv=gv
-
-
-"" Toggle tag list on the left side"
-imap <silent> <F4> <ESC>:TlistToggle<cr>i
-map <silent> <F4> :TlistToggle<cr>
+nnoremap <silent> <C-j> :m+<CR>==
+nnoremap <silent> <C-k> :m-2<CR>==
+"" Disable moving lines in insert mode to allow digraps (ctrl-k)
+""imap <silent> <C-j> <Esc>:m+<CR>==gi
+""imap <silent> <C-k> <Esc>:m-2<CR>==gi
+vnoremap <silent> <C-j> :m'>+<CR>gv=gv
+vnoremap <silent> <C-k> :m-2<CR>gv=gv
 
 
 "" Move by row instead of line"
@@ -369,7 +365,7 @@ nnoremap <S-Right> <esc>:cn<cr>
 nnoremap <S-Up> <esc>:copen<cr>
 nnoremap <S-Down> <esc>:cclose<cr>
 
-"" Make easyer excape to normal mode
+"" Make easier excape to normal mode
 inoremap qq <c-c>
 
 "" onoremap ius <esc>ma:.s/\\(_\\|^\\|$\\)/\\1<cr>`aNvnx
