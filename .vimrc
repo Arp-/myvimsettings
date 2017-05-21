@@ -235,7 +235,9 @@ endfunction
 
 function! OpenOther()
 	let l:path = @%
+	echo l:path
 	let l:pathtok = split(l:path, '/')
+	let l:abs = (l:path[0] ==# '/')
 	let l:i = 0
 	let l:tok_len = len(l:pathtok)
 	while l:i < l:tok_len
@@ -256,7 +258,13 @@ function! OpenOther()
 		let l:i = l:i + 1
 	endwhile
 
-	return join(l:pathtok, "/")
+	"" If the path was absolute make the new path absolute as well
+	"" because looks like the join does not add / at the beginning
+	let l:pairpath = join(l:pathtok, "/")
+	if l:abs
+		let l:pairpath = "/" . l:pairpath
+	endif
+	return l:pairpath
 
 endfunction
 
