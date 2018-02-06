@@ -1,5 +1,5 @@
 
-"" VUNDLE SETTINGS --------------------------------------------------------- 
+"" VUNDLE SETTINGS ---------------------------------------------------------
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -31,9 +31,12 @@ Plugin 'gmarik/Vundle.vim'
 "" My node plugins
 Plugin 'Shutnik/jshint2.vim'
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'lyuts/vim-rtags'
 "Plugin 'terryma/vim-multiple-cursors'
 Plugin 'timcharper/textile.vim'
 Plugin 'dag/vim2hs'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
 "Plugin 'dcharbon/vim-flatbuffers'
 "Plugin 'slashmili/alchemist.vim'
 Plugin 'smerrill/vcl-vim-plugin'
@@ -42,6 +45,8 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'elmcast/elm-vim'
 Plugin 'neovimhaskell/haskell-vim'
 Plugin 'shirk/vim-gas'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -61,13 +66,13 @@ filetype plugin indent on    " required
 
 "  ---------------------------------------------------------- VUNDLE SETTINGS
 
-"" VIM2HS SETTINGS --------------------------------------------------------- 
+"" VIM2HS SETTINGS ---------------------------------------------------------
 
 "" Dunno do something here if i want
 
 "  ---------------------------------------------------------- VIM2HS SETTINGS
 
-"" VIM GLOBAL SETTINGS ----------------------------------------------------- 
+"" VIM GLOBAL SETTINGS -----------------------------------------------------
 
 syntax on
 set number
@@ -75,7 +80,7 @@ set number
 
 
 "" Display the statusline, or not to display the statusline ""
-set laststatus=1 
+set laststatus=1
 set shiftwidth=2
 set tabstop=2
 ""set smartindent
@@ -125,7 +130,7 @@ let OmniCpp_LocalSearchDecl = 0
 
 "  ------------------------------------------------------ VIM GLOBAL SETTINGS
 
-"" VIM FUNCTIONS ----------------------------------------------------------- 
+"" VIM FUNCTIONS -----------------------------------------------------------
 
 :function ScrollBindAll()
 :	windo set scrollbind
@@ -215,14 +220,14 @@ function! IsLower(char)
 endfunction
 
 function! StrInheritCase(one, two)
-	if strlen(a:one) != strlen(a:two) 
+	if strlen(a:one) != strlen(a:two)
 		return -1
 	endif
 	let l:twolist = split(a:two, '\zs')
 	let l:onelist = split(a:one, '\zs')
 	let l:onelen = len(l:onelist)
 	let l:i = 0
-	while (l:i < l:onelen) 
+	while (l:i < l:onelen)
 		if IsLower(l:onelist[l:i])
 			let l:twolist[l:i] = tolower(l:twolist[l:i])
 		elseif IsUpper(l:onelist[l:i])
@@ -268,10 +273,38 @@ function! OpenOther()
 
 endfunction
 
+function! SwapWinBuf(direction)
+	let l:winid = win_getid(winnr())
+	let l:wins_in_tab = gettabinfo()[tabpagenr()-1]["windows"]
+	let l:index = index(l:wins_in_tab, l:winid)
+	let l:newindex = 0
+	""" Move the list clockwise // forward
+	if a:direction > 0
+		if l:index == 0
+			let l:newindex = len(l:wins_in_tab) -1
+		else
+			let l:newindex = l:index -1
+		endif
+	else
+		if l:index == (len(l:wins_in_tab) -1)
+			let l:newindex = 0
+		else
+			let l:newindex = l:index +1
+		endif
+	endif
+	let l:otherwindow = l:wins_in_tab[l:newindex]
+	let l:otherbuf = winbufnr(l:otherwindow)
+	let l:thisbuf = winbufnr(l:winid)
+
+	execute "" . win_id2win(l:winid) . "windo :" . l:otherbuf . "buf"
+	execute "" . win_id2win(l:otherwindow) . "windo :" . l:thisbuf . "buf"
+"""	return {1: l:wins_in_tab, 2: l:winid, 3: l:otherwindow, 4: l:thisbuf, 5: l:otherbuf}
+endfunction
+
 
 "  ------------------------------------------------------------ VIM FUNCTIONS
 
-"" VIM COMMANDS ------------------------------------------------------------ 
+"" VIM COMMANDS ------------------------------------------------------------
 
 "create Trim command:"
 :command Trim :%s/\s\+$//e
@@ -282,9 +315,11 @@ endfunction
 
 :command Vo :execute 'vs ' . OpenOther()
 
+:command OPC :execute 'vs ' . expand('%:p:r')
+
 "  ------------------------------------------------------------- VIM COMMANDS
 
-"" VIM MAPPINGS ------------------------------------------------------------ 
+"" VIM MAPPINGS ------------------------------------------------------------
 
 map <silent> <F9> :call ScrollBindAll()<CR>
 map <silent> <F10> :call ScrollBindNone()<CR>
@@ -298,10 +333,10 @@ imap <F2> <C-t>
 
 
 "" Moving around (probably)
-nmap <C-H> <C-W>h 
-nmap <C-J> <C-W>j 
-nmap <C-K> <C-W>k 
-nmap <C-L> <C-W>l 
+nmap <C-H> <C-W>h
+nmap <C-J> <C-W>j
+nmap <C-K> <C-W>k
+nmap <C-L> <C-W>l
 
 
 "" clear search highlight"
@@ -359,8 +394,8 @@ nmap Ł [6~
 
 
 "" Make tab width to 80 character long
-"nmap <silent> <A-í> 
-"nmap <silent> <A-y> 
+"nmap <silent> <A-í>
+"nmap <silent> <A-y>
 
 
 "" 80 character long comment line
@@ -385,6 +420,9 @@ noremap <right> <esc>
 noremap <up> <esc>
 noremap <down> <esc>
 
+nnoremap <c-w>> :call SwapWinBuf(0)<cr>
+nnoremap <c-w>< :call SwapWinBuf(1)<cr>
+
 "" yank the whole file into + register
 ""nnoremap ya ggVG"+y
 
@@ -393,13 +431,13 @@ noremap <down> <esc>
 
 "  ------------------------------------------------------------- VIM MAPPINGS
 "
-"" VIM ABBREVIATIONS ------------------------------------------------------- 
+"" VIM ABBREVIATIONS -------------------------------------------------------
 
 " NOTE MAKE SOME USE OF THIS
 
 "  -------------------------------------------------------- VIM ABBREVIATIONS
 "
-"" VIM AUTOCOMMANDS -------------------------------------------------------- 
+"" VIM AUTOCOMMANDS --------------------------------------------------------
 
 "" automaticly 4 space expandtab
 
@@ -438,7 +476,7 @@ augroup end
 
 augroup javascript_settings
 	autocmd!
-	autocmd FileType javascript :call JavascriptSyntax() 
+	autocmd FileType javascript :call JavascriptSyntax()
 augroup END
 
 augroup json_settings
@@ -471,6 +509,15 @@ augroup elixir_settings
 	autocmd FileType ex :set et sw=2 ts=2 syn=elixir
 	autocmd FileType exs :set et sw=2 ts=2 syn=elixir
 augroup END
+
+
+
+
+""augroup test
+""	autocmd!
+""	autocmd TabEnter * :echom "macska"
+""	autocmd TabLeave * :echom "end macska"
+""augroup END
 
 ""augroup netrw_settings
 ""	autocmd!
