@@ -47,6 +47,7 @@ Plugin 'neovimhaskell/haskell-vim'
 Plugin 'shirk/vim-gas'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
+Plugin 'posva/vim-vue'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -107,6 +108,9 @@ set colorcolumn=81,121
 set t_Co=256
 colorscheme jellybeans
 
+"" split
+set splitright
+
 
 "" overwrite leader key"
 let mapleader = '-'
@@ -114,6 +118,8 @@ let mapleader = '-'
 
 "" let netrw tree style
 let g:netrw_liststyle=3
+""let g:netrw_altv=&spr
+
 
 
 "C++ completion settings"
@@ -364,6 +370,9 @@ imap <silent> <A-Right> <ESC> :wincmd l<CR>i
 "" Moving lines up and down"
 nnoremap <silent> <C-j> :m+<CR>==
 nnoremap <silent> <C-k> :m-2<CR>==
+"" remap ZZ and ZQ to QWERTZ
+nnoremap YY ZZ 
+nnoremap YQ ZQ 
 "" Disable moving lines in insert mode to allow digraps (ctrl-k)
 ""imap <silent> <C-j> <Esc>:m+<CR>==gi
 ""imap <silent> <C-k> <Esc>:m-2<CR>==gi
